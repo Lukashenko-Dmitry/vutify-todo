@@ -1,11 +1,12 @@
 <template>
-   <v-menu
+    <div>
+        <v-menu
             bottom
             left
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                dark
+                color= 'primary'       
                 icon
                 v-bind="attrs"
                 v-on="on"
@@ -16,25 +17,66 @@
 
             <v-list>
               <v-list-item
-                v-for="(item, i) in items"
-                :key="i"
+                v-for="(item, index) in items"
+                :key="index"
+                @click="handelClick(index)"
               >
+                <v-list-item-icon>
+                    <v-icon v-text="item.icon"></v-icon>
+                </v-list-item-icon>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
+
+        <dialog-delete
+            @close="dialogs.delete = false"
+            v-if="dialogs.delete"
+            :task="task"
+            />
+    </div>
+   
 </template>
 
 <script>
 export default {
- data: () => ({
+    props: ['task'],
+    data: () => ({
+      dialogs: {
+        delete: false
+      },
       items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
+        { 
+            title: 'Edit',
+            icon: 'mdi-pencil',
+            click(){
+                console.log('edit')
+            },
+        },
+        { 
+            title: 'Due Date',
+            icon:  'mdi-calendar',
+            click(){
+             console.log('due date')
+            },
+        },
+        {
+            title: 'Delete',
+            icon: 'mdi-delete',
+            click(){
+             this.dialogs.delete = true;
+            },
+        },       
       ],
     }),
+    methods: {
+        handelClick(index){
+            this.items[index].click.call(this)
+        }
+    },
+    components: {
+        'dialog-delete': require('@/components/Todo/Dialogs/DialogDelete.vue').default,
+    }
 }
 </script>
 
