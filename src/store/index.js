@@ -57,6 +57,10 @@ export default new Vuex.Store({
     snackbarHide(state){
       state.snackbar.show = false;
     },
+    updateTaskTitle(state, payload){
+      let task = state.tasks.filter(task => task.id === payload.id)[0];
+      task.title = payload.title;
+    },
   },
   actions: {
     addTask({commit}, newTaskTitle){
