@@ -69,9 +69,9 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
-
     <v-main>
       <router-view></router-view>
+      <snackbar/>
     </v-main>
   </v-app> 
 </template>
@@ -89,5 +89,8 @@ export default {
         ],
     right: null,
   }),
+  components:{
+    'snackbar': require('@/components/Shared/SnackBar.vue').default
+  }
 };
 </script>
