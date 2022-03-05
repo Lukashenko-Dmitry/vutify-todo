@@ -6,6 +6,7 @@
      app
      >
       <v-img 
+        color="primary"
         class="pa-4 pt-7"
         gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         height="170"
@@ -66,7 +67,7 @@
           <search/>
         </v-row>       
         <v-row>
-          <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
+          <v-app-bar-title class="ml-4">{{$store.state.appTitle}}</v-app-bar-title>
         </v-row>
          <v-row class="mt-1">
           <live-date-time />
@@ -92,6 +93,11 @@ export default {
         ],
     right: null,
   }),
+  // computed: {
+  //   appTitle(){
+  //     return process.env.VUE_APP_TITLE
+  //   }
+  // },
   components:{
     'search': require('@/components/Tools/Search.vue').default,
     'snackbar': require('@/components/Shared/SnackBar.vue').default,
