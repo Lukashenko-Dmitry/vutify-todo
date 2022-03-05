@@ -1,20 +1,27 @@
-<template> <v-app id="inspire">
+<template> 
+
+  <v-app id="inspire">
      <v-navigation-drawer
      v-model="drawer"
      app
      >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Vuetify Todo
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            Best Todo Ever
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+      <v-img 
+        class="pa-4 pt-7"
+        gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        height="170"
+        dark        
+        src="https://picsum.photos/1920/1080?random"
+      >
+       <v-avatar size="70">
+        <img          
+          src="@/assets/Lukashenko.jpg"
+          alt="Dmitry Lukashenko"
+        >
+      </v-avatar>
+      <div class="text-subtitle-1 font-weight-bold ">Dmitry Lukashenko</div>
+      <div class="text-subtitle-2 ">dmitry_lukashenko</div>
+      </v-img>
 
-      <v-divider></v-divider>
 
       <v-list
         dense
@@ -43,6 +50,8 @@
       dark      
       src="https://picsum.photos/1920/1080?random"      
       prominent
+      height="170"
+
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -50,17 +59,19 @@
           gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         ></v-img>
       </template>
-
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-app-bar-title>Vuetify Todo</v-app-bar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
+      <v-container class="pa-0">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <search/>
+        </v-row>       
+        <v-row>
+          <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
+        </v-row>
+         <v-row class="mt-1">
+          <live-date-time />
+        </v-row>
+      </v-container>     
     </v-app-bar>
     <v-main>
       <router-view></router-view>
@@ -73,9 +84,8 @@
 
 export default {
   name: 'App',
-
   data: () => ({
-    drawer: null,
+    drawer: false,
     items: [
           { title: 'Todo', icon: 'mdi-format-list-checks', to:'/' },
           { title: 'About', icon: 'mdi-help-box', to:'/about' },
@@ -83,7 +93,9 @@ export default {
     right: null,
   }),
   components:{
-    'snackbar': require('@/components/Shared/SnackBar.vue').default
+    'search': require('@/components/Tools/Search.vue').default,
+    'snackbar': require('@/components/Shared/SnackBar.vue').default,
+    'live-date-time': require('@/components/Tools/LiveDateTime.vue').default
   }
 };
 </script>

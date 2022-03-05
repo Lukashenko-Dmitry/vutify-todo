@@ -4,7 +4,7 @@
       class="pt-0"
     >
     <task
-        v-for = "task in $store.state.tasks"
+        v-for = "task in $store.getters.taskFiltered"
         :key = "task.id"
         :task="task"
     />    
