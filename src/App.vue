@@ -101,7 +101,8 @@ export default {
   components:{
     'search': require('@/components/Tools/Search.vue').default,
     'snackbar': require('@/components/Shared/SnackBar.vue').default,
-    'live-date-time': require('@/components/Tools/LiveDateTime.vue').default
+    'live-date-time': require('@/components/Tools/LiveDateTime.vue').default,
+    
   }
 };
 </script>

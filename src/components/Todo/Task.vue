@@ -3,6 +3,7 @@
       <v-list-item 
        @click="$store.commit('doneTask',task.id)"
        :class="{'blue lighten-5':task.done}"
+       :ripple="false"
        >
           <template v-slot:default>
             <v-list-item-action>
@@ -16,7 +17,8 @@
               <v-list-item-title
               :class="{'text-decoration-line-through':task.done}"
               >                
-                {{task.title}}</v-list-item-title>
+                {{task.title}}
+              </v-list-item-title>
             </v-list-item-content>
 
             <v-list-item-action v-if="task.dueDate">
@@ -30,6 +32,16 @@
               <task-menu
               :task="task"
             />
+            </v-list-item-action>
+            
+            <v-list-item-action v-if="$store.state.sorting">
+              <v-btn
+                  color= 'primary'    
+                  class="handle"   
+                  icon                
+                  >
+                  <v-icon>mdi-drag-horizontal-variant</v-icon>
+                </v-btn>
             </v-list-item-action>
           </template>
       </v-list-item>
@@ -51,3 +63,5 @@
     }
   }
 </script>
+
+

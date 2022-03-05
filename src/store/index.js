@@ -30,7 +30,8 @@ export default new Vuex.Store({
     snackbar:{
       show: false,
       text: '',
-    }
+    },
+    sorting: false,
   },
   mutations: {
     setSearch(state, value){
@@ -72,9 +73,14 @@ export default new Vuex.Store({
     },
     updateTaskDueDate(state, payload){
       let task = state.tasks.filter(task => task.id === payload.id)[0];
-      task.dueDate = payload.dueDate;
-      
-    }
+      task.dueDate = payload.dueDate;      
+    },
+    toggleSorting(state){
+      state.sorting = !state.sorting;
+    },
+    setTasks(state, tasks){
+      state.tasks = tasks;
+    },
   },
   actions: {
     addTask({commit}, newTaskTitle){
