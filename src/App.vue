@@ -9,7 +9,7 @@
         color="primary"
         class="pa-4 pt-7"
         gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
-        height="170"
+        :height="this.$route.path === '/' ? 240 : 170"
         dark        
         src="https://picsum.photos/1920/1080?random"
       >
@@ -51,13 +51,13 @@
       dark      
       src="https://picsum.photos/1920/1080?random"      
       prominent
-      height="170"
+      :height="this.$route.path === '/' ? 240 : 170"
 
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.9)"
         ></v-img>
       </template>
       <v-container class="pa-0">
@@ -71,6 +71,9 @@
         </v-row>
          <v-row class="mt-1">
           <live-date-time />
+        </v-row>
+        <v-row v-if="this.$route.path === '/'">
+          <field-add-task/>
         </v-row>
       </v-container>     
     </v-app-bar>
@@ -93,15 +96,14 @@ export default {
         ],
     right: null,
   }),
-  // computed: {
-  //   appTitle(){
-  //     return process.env.VUE_APP_TITLE
-  //   }
-  // },
+  mounted () {    
+    this.$store.dispatch('getTasks');
+  },  
   components:{
-    'search': require('@/components/Tools/Search.vue').default,
-    'snackbar': require('@/components/Shared/SnackBar.vue').default,
+    'search': require('@/components/Tools/Search.vue').default,    
     'live-date-time': require('@/components/Tools/LiveDateTime.vue').default,
+    'field-add-task': require('@/components/Todo/FieldAddTask.vue').default,
+    'snackbar': require('@/components/Shared/SnackBar.vue').default,
     
   }
 };

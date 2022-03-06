@@ -10,8 +10,7 @@
           >
           <template v-slot:append>
               <v-icon
-              @click="addTask"
-              color="primary"
+              @click="addTask"              
               :disabled="newTaskTitleInvalid"
               >
                 mdi-plus
